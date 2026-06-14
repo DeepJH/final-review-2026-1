@@ -1,69 +1,21 @@
 **《Linux操作系统》复习资料**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **一、Linux基础知识**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **1.1 起源与核心概念**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **知识点** | **内容** |  
 | --- | --- |  
 | Linux创始人 | **Linus Torvalds** |  
 | 引导程序 | **Bootloader**（引导操作系统内核的程序） |  
 | 查看/编辑内核路由表 | **route** 命令 |  
 | root用户UID | **0** |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **二、用户与权限管理**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **2.1 用户管理命令**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **操作** | **命令** |  
 | --- | --- |  
 | 创建用户 | useradd / adduser |  
 | 删除用户（同时删主目录） | userdel -r |  
 | 修改密码 | passwd |  
 | 查看用户信息文件 | /etc/passwd（不含密码）、/etc/shadow（含加密密码） |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **2.2 权限管理**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **知识点** | **内容** |  
 | --- | --- |  
 | 修改权限 | chmod |  
@@ -71,58 +23,16 @@
 | 修改属组 | chgrp |  
 | 查看umask | umask |  
 | 权限数字对应 | r=4, w=2, x=1 |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **2.3 特殊权限位**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **权限** | **数字** | **字母法** | **作用** |  
 | --- | --- | --- | --- |  
 | **setgid** | 2 | g+s | 目录下新建文件继承目录属组 |  
 | **setuid** | 4 | u+s | 以文件属主身份执行 |  
 | **sticky bit** | 1 | o+t | 仅属主可删除文件（/tmp） |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **2.4 经典计算**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **rwxr-xr-x = 755**（属主7，属组5，其他5） **rw-r--r-- = 644**（属主6，属组4，其他4）  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **三、Shell编程**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **3.1 预定义变量**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **变量** | **含义** |  
 | --- | --- |  
 | `$?` | 上一个命令的退出状态（0=成功，非0=失败） |  
@@ -131,56 +41,20 @@
 | `$1` | 脚本第一个参数 |  
 | `$#` | 参数个数 |  
 | \$* / \$@ | 所有参数 |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **3.2 有条件的变量替换**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **语法** | **含义** |  
 | --- | --- |  
 | ${param:-word} | param未设置或为空，则用word |  
 | ${param:=word} | param未设置或为空，则用word**并赋值** |  
 | ${param:?word} | param未设置或为空，则报错word |  
 | ${param:+word} | param已设置且非空，则用word |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **3.3 逻辑运算符**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **运算符** | **含义** | **示例** |  
 | --- | --- | --- |  
 | && | 前成功才执行后 | cmd1 && cmd2 |  
 | \|\| | 前失败才执行后 | cmd1 \|\| cmd2 |  
 | ; | 顺序执行 | cmd1; cmd2 |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **3.4 文件测试**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **测试** | **含义** |  
 | --- | --- |  
 | -f | 普通文件存在 |  
@@ -189,26 +63,8 @@
 | -r | 可读 |  
 | -w | 可写 |  
 | -x | 可执行 |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **四、软件包管理**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **4.1 RPM vs YUM/DNF 对比**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **特性** | **RPM** | **YUM/DNF** |  
 | --- | --- | --- |  
 | 级别 | 低级包管理器 | 高级包管理器 |  
@@ -216,38 +72,14 @@
 | 网络仓库 | ❌ 不支持 | ✅ 支持 |  
 | 常用命令 | rpm -ivh（安装）、rpm -e（卸载）、rpm -ql（查文件） | yum install、yum remove |  
 | RHEL 8默认 | — | **DNF**（YUM的继任者） |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **4.2 仓库结构（RHEL 8）**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **仓库** | **用途** |  
 | --- | --- |  
 | **BaseOS** | 操作系统底层核心软件，生命周期与发行版一致 |  
 | **AppStream** | 应用程序流 |  
 | EPEL | 额外企业级Linux包 |  
 | RPM Fusion | 第三方包 |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **4.3 本地YUM仓库搭建（离线场景）**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 mount /dev/cdrom /mnt  
 yum install createrepo -y  
 createrepo /mnt  
@@ -258,115 +90,37 @@ createrepo /mnt
 \# gpgcheck=0  
 yum clean all && yum makecache  
 yum install httpd -y  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **五、网络管理**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **5.1 RHEL 8网络管理核心**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **工具** | **用途** |  
 | --- | --- |  
 | **NetworkManager** | 管理网络连接、检测网络、自动连接 |  
 | **nmcli** | CLI方式管理NetworkManager（**最佳实践**） |  
 | **firewalld** | 防火墙管理（RHEL 7/8默认） |  
 | iproute2 | 替代net-tools的新工具集（ip addr、ip route、ss） |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **5.2 nmcli配置静态IP（RHEL 8）**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 nmcli connection add type ethernet con-name static-eth0 ifname eth0  
 nmcli connection modify static-eth0 ipv4.addresses 192.168.1.100/24  
 nmcli connection modify static-eth0 ipv4.gateway 1992.168.1.1  
 nmcli connection modify static-eth0 ipv4.dns "8.8.8.8 114.114.114.114"  
 nmcli connection modify static-eth0 ipv4.method manual  
 nmcli connection up static-eth0  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **5.3 firewalld常用命令**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **操作** | **命令** |  
 | --- | --- |  
 | 放行服务（永久） | firewall-cmd --permanent --add-service=http |  
 | 重载配置 | firewall-cmd --reload |  
 | 查看状态 | systemctl status firewalld |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **5.4 TCP Wrappers**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **知识点** | **内容** |  
 | --- | --- |  
 | 控制文件 | /etc/hosts.allow 和 /etc/hosts.deny |  
 | 检查顺序 | **先** hosts.allow，**再** hosts.deny |  
 | 示例 | sshd : 192.168.10.0/24（允许该网段SSH） |  
 | 工作层 | 传输层 |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **5.5 DHCP过程**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **DISCOVER → OFFER → REQUEST → ACK**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **六、进程与系统监控**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **命令** | **用途** | **特点** |  
 | --- | --- | --- |  
 | ps aux / ps -ef | 查看进程快照 | 静态信息 |  
@@ -377,38 +131,14 @@ nmcli connection up static-eth0
 | uptime / w | 负载与登录用户 | — |  
 | kill / pkill / killall | 终止进程 | kill PID / pkill 进程名 |  
 | crontab | 定时任务 | 每天2:30 → 30 2 \* \* \* |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **七、Vim编辑器**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **操作** | **按键** |  
 | --- | --- |  
 | 命令模式→输入模式 | **i** |  
 | 删除当前行并进入输入模式 | **cc** |  
 | 保存退出 | :wq |  
 | 命令模式进入 | **Esc** |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **八、文件系统与磁盘**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **命令** | **用途** |  
 | --- | --- |  
 | df | 查看磁盘空间占用 |  
@@ -416,38 +146,14 @@ nmcli connection up static-eth0
 | lsblk | 查看块设备 |  
 | fdisk | 磁盘分区 |  
 | 常见文件系统 | ext3、ext4、xfs |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **九、Web服务（Apache）**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **知识点** | **内容** |  
 | --- | --- |  
 | RHEL 8默认Web服务器 | **Apache HTTP Server (httpd)** |  
 | 主配置文件 | /etc/httpd/conf/httpd.conf |  
 | 关键指令 | ServerRoot（根目录）、Listen（监听端口）、DocumentRoot（文档根目录）、DirectoryIndex（默认索引） |  
 | 启动与开机自启 | systemctl start httpd + systemctl enable httpd |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **十、SELinux**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **模式** | **含义** |  
 | --- | --- |  
 | **Enforcing** | 强制执行安全策略 |  
@@ -455,19 +161,7 @@ nmcli connection up static-eth0
 | **Disabled** | 完全禁用 |  
 | 临时切换Permissive | setenforce 0 |  
 | 查看安全上下文 | ls -Zd 目录路径 |  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 **十一、常考易错点汇总**  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 | **易错点** | **正确答案** |  
 | --- | --- |  
 | Linux只能在Intel x86上运行？ | ❌ 错，支持x86、x64、ARM、SPARC等 |  
