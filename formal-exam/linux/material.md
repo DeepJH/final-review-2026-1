@@ -175,6 +175,7 @@ nmcli connection up static-eth0
 | useradd默认创建主目录？ | ❌ 错，需加-m |  
 | DHCP OFFER先发？ | ❌ 错，客户端先DISCOVER |  
 | iptables在RHEL 8完全淘汰？ | ❌ 错，firewalld后端可用iptables/nftables |  
+
 <br>
 <br>
 <br>
