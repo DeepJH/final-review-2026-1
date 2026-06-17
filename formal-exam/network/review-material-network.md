@@ -1,4 +1,4 @@
-# material
+# review-material-network
 ## 香农定理(p29,30)
     - **信道的极限容量** 
         C = B log2 (1 + S / N) (bit/s)
