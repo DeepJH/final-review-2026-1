@@ -1,23 +1,25 @@
 # review-material-computer
 ## [ ]计算题
 - [ ]半导体存储器扩展设计（字位扩展）
-    - [ ]SRAM 若干，规格为 4K * 8bit。现在需要用这些芯片组成一个 8K * 16bit 的存储器。请画出/说明其连接图、地址线、数据线、片选数据线及片选逻辑。
+    - [ ]SRAM 若干，规格为 4K * 8bit。现在需要用这些芯片组成一个 8K * 16bit 的存储器。请画出/说明其连接图、地址线、数据线、读写控制线、片选数据线及片选逻辑电路。
         - answer
             参考 note 画一下
         - note
+            - 各部分的对应说明
+                - 连接图 就是画好的一整个图
+                - 地址线 $Ax - Ay$ (Adress) 数量看地址是2的几次方 上面要标斜杠标数字，说明是几根线合在一起了
+                - 数据线 $Dx - Dy$ (Data) 数量看地址是2的几次方 上面要标斜杠标数字，说明是几根线合在一起了
+                - 读写控制线 $R/\overline{\text{W}}$
+                - 片选逻辑电路 $\overline{\text{CS0}}$、$\overline{\text{CS1}}$、$\overline{\text{CS2}}$、$\overline{\text{CS3}}$ (Chip Select)
+                - 片选数据线 就是片选逻辑电路上面和下面的那几根线 $\overline{\text{Ax}}$
             1. ![diagram-1](.image/diagram-1.jpg)
             2. ![diagram-2](.image/diagram-2.jpg)
             3. ![diagram-3](.image/diagram-3.jpg)
             4. ![diagram-4](.image/diagram-4.jpg)
 
-    - [ ]16K * 8bit 芯片做 16K * 8bit 存储器。请画出/说明连接图、地址线、数据线、片选数据线及片选逻辑。
+    - [ ]16K * 8bit 芯片做 16K * 8bit 存储器。请画出/说明连接图、地址线、数据线、读写控制线、片选数据线及片选逻辑电路。
         - answer
-            参考 note 画一下
-        - note
-            1. ![diagram-1](.image/diagram-1.jpg)
-            2. ![diagram-2](.image/diagram-2.jpg)
-            3. ![diagram-3](.image/diagram-3.jpg)
-            4. ![diagram-4](.image/diagram-4.jpg)
+            - 同上
     
 - [x]运算器设计与各种码的运算
     - [x]$x = -0.1011$，$y = 0.1101$，用变形补码双符号位计算 $x + y$，并指出结果是否溢出。
