@@ -9,4 +9,4 @@
 
 Made with [contrib.rocks](https://contrib.rocks).
 # LICENSE
-本项目基于 [MIT](LICENSE) 协议开源。
+本项目基于 [CC BY-NC-SA 4.0](LICENSE) 协议开源。
