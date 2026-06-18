@@ -8,5 +8,14 @@
 </a>
 
 Made with [contrib.rocks](https://contrib.rocks).
+
 # LICENSE
-本项目基于 [CC BY-NC-SA 4.0](LICENSE) 协议开源。
+
+本仓库内的所有内容（包括但不限于代码注释、文档、图片等）均采用 **[CC BY-NC-ND 4.0 (署名-非商业性使用-禁止演绎 4.0 国际)](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans)** 许可协议进行保护。
+
+![CC BY-NC-ND 图标](https://licensebuttons.net/l/by-nc-nd/4.0/88x31.png)
+
+**简要说明：**
+- **署名：** 您在传播时必须给出适当的署名，提供指向本许可协议的链接。
+- **非商业性使用：** 您**不得**将本作品用于任何商业目的或进行倒卖。
+- **禁止演绎：** 如果您再混合、转换作品，或基于该作品进行创作，您**不能**分发修改后的作品。
