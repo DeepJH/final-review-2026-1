@@ -4,7 +4,7 @@
 自己找去吧
 
 ## 资料
-> 现已在 notebooklm 上可用  
+> 本资料现已可用在 notebooklm 上  
     https://notebooklm.google.com/notebook/18b09543-2b11-4f0a-ac96-946fdc02447b
 
 ### 1、世界的物质统一性？P39
