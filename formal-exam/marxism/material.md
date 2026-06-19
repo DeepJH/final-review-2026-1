@@ -1,8 +1,8 @@
 # review-material-marxism
 
-## 资料
+> ## NOTEBOOKLM  
 > 本资料现已可用在 notebooklm 上。包含本文和review-material-marxism-haojie.md  
-    https://notebooklm.google.com/notebook/18b09543-2b11-4f0a-ac96-946fdc02447b
+> https://notebooklm.google.com/notebook/18b09543-2b11-4f0a-ac96-946fdc02447b
 
 ### 1、世界的物质统一性？P39
     ①自然界是物质的。
