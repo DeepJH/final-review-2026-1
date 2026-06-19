@@ -1,8 +1,5 @@
 # review-material-marxism
 
-## 学习通的各种题
-自己找去吧
-
 ## 资料
 > 本资料现已可用在 notebooklm 上。包含本文和review-material-marxism-haojie.md  
     https://notebooklm.google.com/notebook/18b09543-2b11-4f0a-ac96-946fdc02447b
