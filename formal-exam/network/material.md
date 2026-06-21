@@ -323,7 +323,34 @@
 
 ## TCP三次握手描述(未知页数)
 
+1. **第一次握手（SYN）：**
+* **过程：** 客户端发送连接请求报文段。将标志位 **SYN 置为 1**，并随机产生一个初始序列号 **`seq = x`**。
+* **状态：** 客户端进入 `SYN-SENT`（同步已发送）状态。
+
+
+2. **第二次握手（SYN + ACK）：**
+* **过程：** 服务器发送确认报文段。将标志位 **SYN 和 ACK 都置为 1**，确认号 **`ack = x + 1`**，同时自己也随机产生一个初始序列号 **`seq = y`**。
+* **状态：** 服务器进入 `SYN-RCVD`（同步收到）状态。
+
+
+3. **第三次握手（ACK）：**
+* **过程：** 客户端收到服务器的确认后，再向服务器给出最终确认。将标志位 **ACK 置为 1**，确认号 **`ack = y + 1`**，自己的序列号 **`seq = x + 1`**。
+* **状态：** 双方进入 `ESTABLISHED`（已建立连接）状态，开始传输数据。
+
+> SYN (Synchronize Sequence Numbers)
+> ACK (Acknowledgment)
+> seq (Sequence Number)
+
 ## VLAN作用(未知页数)
+
+- 作用
+    - 隔离广播域：限制广播范围抑制广播风暴
+    - 增强安全性：VLAN间二层隔离 ，防止未授权访问
+    - 简化管理：逻辑分组不受物理位置限制
+
+- 原理
+    - 802.1Q标签：在在原数据帧中插入4字节Tag标识
+    - 端口转发规则：Access口连接终端设备，只属于一个VLAN，剥离/添加标签；Trunk口用于交换机之间或交换机与路由器之间的互连，允许多个不同的 VLAN 流量通过，保留VLAN tag；
 
 ## 单臂路由实现原理(未知页数)
 
@@ -334,8 +361,86 @@
     - 5层
     - 4层
 ## ARP(未知页数)
-    - RARP
+    - RARP(可选)
 
-## 拍照的实验1，它的配置命令
+## 拍照的实验1，它的配置命令(待确认)
+
+![exp-1](.image/exp-1.png)
+
+```bash
+enable
+config t
+vlan 10
+exit
+interface fa0/5
+switchport mode access
+switchport access vlan 10
+exit
+interface fa0/24
+switchport mode trunk
+```
+
+- Switch1
+
+```bash
+enable
+config  t
+ip routing
+vlan 10
+exit
+vlan 20
+exit
+interface fa0/24
+switchport trunk encapsulation dot1q
+switchport mode trunk
+exit
+interface fa0/5(0/8)
+switchport mode access
+switchport access vlan 10(20)
+exit
+interface Vlan10(20)
+ip address 192.168.10(20).1 255.255.255.0
+no shutdown
+exit
+```
 
 ## 拍照的实验2，它的配置命令
+
+![exp-2](.image/exp-2.png)
+
+1.  基础配置(PC1、PC2、PC3的IP、掩码、网关)
+2. CLI命令行配置
+- Switch1配置(Switch2同理)
+
+```bash
+enable
+config t
+vlan 10
+exit
+vlan 20
+exit
+interface fa0/1(0/2)
+switchport mode access
+switchport access vlan 30(10)
+exit
+interface fa0/24
+switchport mode trunk
+```
+
+- Switch0配置
+
+```bash
+enable
+config t
+ip routing
+vlan 10(20 30 200)
+exit
+interface range fa0/1 - 2
+switchport trunk encapsulation dot1q
+switchport mode trunk
+exit
+interface Vlan 10(20 30 200)
+ip address 192.168.10(20 30 200).1 255.255.255.0
+no shutdown
+exit
+```
