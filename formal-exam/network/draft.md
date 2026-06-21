@@ -1,16 +1,50 @@
-明白，这次不使用 `<br>` 换行符，而是将 OSI 和 TCP/IP 的层级直接平铺在同一行，并用连接符或空格分开。这种纯 Markdown 表格在 VS Code 的 Markdown 预览以及各类标准渲染器中兼容性最好，绝不会乱码。
+- switch2
+```bash
+en 
+conf ter
 
----
+vlan 10
+exit
+ 
+int f0/5
+swi mode access
+swi access vlan 10
+exit
 
-### OSI 与 TCP/IP 映射及核心功能表
+int f0/24
+swi mode trunk
+exit
+```
+- switch1
+```bash
+en
+conf ter
 
-| TCP/IP 四层模型 | 包含的 OSI 七层 | 核心功能 | 核心协议 / 技术 |
-| --- | --- | --- | --- |
-| **应用层** | 应用层、表示层、会话层 | 提供网络服务、数据加密与会话管理 | HTTP, HTTPS, FTP, DNS, SMTP |
-| **传输层** | 传输层 | 进程间的端到端通信、可靠/不可靠传输 | TCP, UDP |
-| **网络层** | 网络层 | 数据包路由选择与寻址、路径规划 | IP, ICMP, ARP |
-| **网络接口层** | 数据链路层、物理层 | 相邻节点间的数据帧传输与物理比特流 | 以太网 (Ethernet), Wi-Fi |
+vlan 10
+exit
 
----
+vlan 20
+exit
 
-**提示**：在 VS Code 中，你可以安装 `Markdown All in One` 插件，或者直接使用快捷键 `Ctrl + Shift + V`（Mac上为 `Cmd + Shift + V`）打开预览模式，表格就能完美渲染了。
+ip routing
+
+int f0/5
+swi mode access
+swi access vlan 10
+exit
+
+int f0/8
+swi mode access
+swi access vlan 20
+exit
+
+int f0/24
+swi trunk encaps dot1q
+swi mode trunk
+exit
+
+int vlan 10
+ip addr 192.168.10.1 255.255.255.0
+no shut
+exit
+```

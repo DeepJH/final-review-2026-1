@@ -365,57 +365,97 @@
 
 OSI是**七层**，TCP/IP是**四层**（或五层）。它们之间的对齐关系如下表：
 
-| TCP/IP 四层模型 | 包含的 OSI 七层 | 核心功能 | 核心协议 / 技术 |
+| TCP/IP 四层模型 | 包含的 OSI 七层 | 核心功能 | 核心协议 / 技术（可选） |
 | --- | --- | --- | --- |
 | **应用层** | 应用层、表示层、会话层 | 提供网络服务、数据加密与会话管理 | HTTP, HTTPS, FTP, DNS, SMTP |
 | **传输层** | 传输层 | 进程间的端到端通信、可靠/不可靠传输 | TCP, UDP |
 | **网络层** | 网络层 | 数据包路由选择与寻址、路径规划 | IP, ICMP, ARP |
 | **网络接口层** | 数据链路层、物理层 | 相邻节点间的数据帧传输与物理比特流 | 以太网 (Ethernet), Wi-Fi |
 
+## ARP原理
 
-## ARP(未知页数)
-    - RARP(可选)
+地址解析协议（Address Resolution Protocol）
+
+- 功能
+    
+    - 将网络层的 IP 地址（逻辑地址） 转换为链路层的 MAC 地址（物理地址）。
+
+- 工作流程
+    1. **第一步：查缓存（ARP Cache）**
+    设备先检查自己的 ARP 缓存表。如果有目标设备的 IP 与 MAC 映射记录，则直接使用。
+
+    2. **第二步：广播请求（ARP Request）**
+    如果没有，设备在局域网内广播一个 ARP 请求包，请求目标设备 mac 地址”
+    
+    3. **第三步：单播响应（ARP Reply）**
+    局域网内的所有主机都收到该请求，只有目标设备相符。目标设备保存设备的 IP-MAC 映射，然后向设备回应一个 ARP 响应包。
+    
+    4. **第四步：记录并发送**
+    设备收到目标设备的响应，设备保存目标设备的 IP-MAC 映射，然后就可以发数据了。
 
 ## 拍照的实验1，它的配置命令(待确认)
 
 ![exp-1](.image/exp-1.png)
 
-```bash
-enable
-config t
-vlan 10
-exit
-interface fa0/5
-switchport mode access
-switchport access vlan 10
-exit
-interface fa0/24
-switchport mode trunk
-```
+- Switch2
+
+    ```bash
+    # 开始配置
+    en
+    conf ter
+    
+    # 创建 vlan 10
+    vlan 10
+    exit
+
+    # 配置 vlan access 接口 
+    int f0/5
+    swi mode access
+    swi access vlan 10
+    exit
+    
+    # 配置 vlan trunk 接口
+    int f0/24
+    swi mode trunk
+    
+    ```
 
 - Switch1
 
-```bash
-enable
-config  t
-ip routing
-vlan 10
-exit
-vlan 20
-exit
-interface fa0/24
-switchport trunk encapsulation dot1q
-switchport mode trunk
-exit
-interface fa0/5(0/8)
-switchport mode access
-switchport access vlan 10(20)
-exit
-interface Vlan10(20)
-ip address 192.168.10(20).1 255.255.255.0
-no shutdown
-exit
-```
+    ```bash
+    # 开始配置
+    en
+    conf ter
+
+    # 开启设备的三层（网络层）路由功能。
+    ip routing 
+    
+    # 创建 vlan
+    vlan 10
+    exit
+
+    vlan 20
+    exit
+    
+    # 配置 vlan 转发接口 
+    int fa0/24
+    swi trunk encap dot1q
+    swi mode trunk
+    exit
+    
+    # 配置接口 vlan 
+    int f0/5(0/8) # 压缩简写，应该写两遍，不是正确语法
+    swi mode access
+    swi access vlan 10(20)
+    exit
+    
+    # 配置 vlan 默认网关
+    int vlan10(20)
+    ip addr 192.168.10(20).1 255.255.255.0
+    no shut
+    exit
+    
+    ```
 
 ## 拍照的实验2，它的配置命令
 
