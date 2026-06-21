@@ -393,7 +393,7 @@ OSI是**七层**，TCP/IP是**四层**（或五层）。它们之间的对齐关
     4. **第四步：记录并发送**
     设备收到目标设备的响应，设备保存目标设备的 IP-MAC 映射，然后就可以发数据了。
 
-## 拍照的实验1，它的配置命令(待确认)
+## 拍照的实验1，它的配置命令
 
 ![exp-1](.image/exp-1.png)
 
@@ -439,11 +439,11 @@ OSI是**七层**，TCP/IP是**四层**（或五层）。它们之间的对齐关
     
     # 配置 vlan 转发接口 
     int fa0/24
-    swi trunk encap dot1q
+    swi trunk encaps dot1q # 注意encaps拼写
     swi mode trunk
     exit
     
-    # 配置接口 vlan 
+    # 配置路由接口 vlan 
     int f0/5(0/8) # 压缩简写，应该写两遍，不是正确语法
     swi mode access
     swi access vlan 10(20)
@@ -461,39 +461,57 @@ OSI是**七层**，TCP/IP是**四层**（或五层）。它们之间的对齐关
 
 ![exp-2](.image/exp-2.png)
 
-1.  基础配置(PC1、PC2、PC3的IP、掩码、网关)
+1. 基础配置(PC1、PC2、PC3的IP、掩码、网关)
 2. CLI命令行配置
-- Switch1配置(Switch2同理)
+    - Switch1配置(Switch2同理)
 
-```bash
-enable
-config t
-vlan 10
-exit
-vlan 20
-exit
-interface fa0/1(0/2)
-switchport mode access
-switchport access vlan 30(10)
-exit
-interface fa0/24
-switchport mode trunk
-```
+        ```bash
+        # 开始配置
+        en
+        conf ter
+        
+        # 创建 vlan
+        vlan 10
+        exit
+        vlan 20
+        exit
+        
+        # 配置 vlan access 接口 
+        int f0/1(0/2)
+        swi mode access
+        swi access vlan 30(10)
+        exit
+        
+        # 配置 vlan trunk 接口 
+        int fa0/24
+        swi mode trunk
+        
+        ```
 
-- Switch0配置
+    - Switch0配置
 
-```bash
-enable
-config t
-ip routing
-vlan 10(20 30 200)
-exit
-interface range fa0/1 - 2
-switchport trunk encapsulation dot1q
-switchport mode trunk
-exit
-interface Vlan 10(20 30 200)
-ip address 192.168.10(20 30 200).1 255.255.255.0
-no shutdown
-exit
-```
+        ```bash
+        # 开始配置
+        en
+        conf ter
+        
+        # 开启开启设备的三层（网络层）路由功能。
+        ip routing
+        
+        # 创建 vlan
+        vlan 10(20 30 200)
+        exit
+        
+        # 配置路由接口 vlan 
+        interface range fa0/1 - 2
+        switchport trunk encapsulation dot1q
+        switchport mode trunk
+        exit
+        
+        # 配置 vlan 默认网关
+        interface Vlan 10(20 30 200)
+        ip address 192.168.10(20 30 200).1 255.255.255.0
+        no shutdown
+        exit
+        
+        ```
